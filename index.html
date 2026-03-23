@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simran Kaur — Marketing Analytics Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #1c2128;
+    --border: #21262d;
+    --border2: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #1f6feb;
+    --accent-light: #388bfd;
+    --green: #3fb950;
+    --green-bg: #1a3a1a;
+    --green-border: #2ea043;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 40px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(13, 17, 23, 0.95);
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo { font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: 0.01em; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+
+  /* MAIN LAYOUT */
+  main { padding: 32px 40px 60px; max-width: 1100px; margin: 0 auto; }
+
+  /* TOP ROW */
+  .top-row {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .card:hover { border-color: var(--border2); transform: translateY(-2px); }
+  .card-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 10px;
+  }
+  .card-title { font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+  .card-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+  .card-link {
+    font-size: 12px;
+    color: var(--accent-light);
+    margin-top: 14px;
+    display: inline-block;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .card-link:hover { color: var(--text); }
+
+  /* CENTER HERO CARD */
+  .center-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 28px 24px;
+    background: var(--surface);
+  }
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 14px;
+    border: 2px solid var(--border2);
+    flex-shrink: 0;
+  }
+  .center-name { font-size: 20px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+  .center-role { font-size: 12px; color: var(--muted); margin-bottom: 18px; line-height: 1.6; }
+  .contact-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 24px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: background 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .contact-btn:hover { background: var(--accent-light); }
+  .social-row { display: flex; gap: 10px; margin-top: 14px; }
+  .social-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--muted);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .social-icon:hover { border-color: var(--accent-light); color: var(--accent-light); }
+
+  /* AVAILABLE BADGE */
+  .avail-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--green-bg);
+    border: 1px solid var(--green-border);
+    border-radius: 8px;
+    padding: 5px 12px;
+    font-size: 11px;
+    color: var(--green);
+    margin-top: 14px;
+  }
+  .avail-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* BOTTOM ROW */
+  .bottom-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  /* PROJECTS */
+  .project-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    transition: padding-left 0.2s;
+  }
+  .project-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .project-item:hover { padding-left: 4px; }
+  .project-num {
+    font-size: 10px;
+    color: var(--accent-light);
+    font-weight: 600;
+    font-family: 'DM Mono', monospace;
+    min-width: 22px;
+    margin-top: 2px;
+  }
+  .project-name { font-size: 13px; color: var(--text); font-weight: 500; margin-bottom: 3px; }
+  .project-sub { font-size: 11px; color: var(--muted); }
+  .project-tag {
+    display: inline-block;
+    background: rgba(31, 111, 235, 0.15);
+    border: 1px solid rgba(56, 139, 253, 0.3);
+    border-radius: 4px;
+    padding: 2px 7px;
+    font-size: 10px;
+    color: var(--accent-light);
+    margin-top: 5px;
+  }
+  .coming-tag {
+    background: rgba(139, 148, 158, 0.1);
+    border-color: var(--border);
+    color: var(--muted);
+  }
+
+  /* SKILLS */
+  .skill-tag {
+    display: inline-block;
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 11px;
+    color: var(--muted);
+    margin: 3px 3px 3px 0;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .skill-tag:hover { border-color: var(--accent-light); color: var(--text); }
+  .skill-section-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 14px 0 6px;
+  }
+  .skill-section-label:first-child { margin-top: 0; }
+
+  /* CERTS */
+  .cert-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .cert-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+  .cert-name { font-size: 13px; color: var(--text); font-weight: 500; }
+  .cert-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  /* EDU */
+  .edu-item { margin-bottom: 12px; }
+  .edu-degree { font-size: 12px; color: var(--text); font-weight: 500; }
+  .edu-school { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  /* ABOUT SECTION */
+  .about-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .about-quote {
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.8;
+    border-left: 3px solid var(--accent);
+    padding-left: 20px;
+  }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .stat-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+  .stat-num { font-size: 26px; font-weight: 600; color: var(--accent-light); font-family: 'DM Mono', monospace; }
+  .stat-label { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+  /* CONTACT FOOTER */
+  .contact-footer {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+  .contact-left h3 { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+  .contact-left p { font-size: 13px; color: var(--muted); }
+  .contact-right { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .contact-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 12px;
+    color: var(--text);
+    text-decoration: none;
+    transition: border-color 0.2s;
+  }
+  .contact-chip:hover { border-color: var(--accent-light); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    main { padding: 20px; }
+    .top-row, .bottom-row { grid-template-columns: 1fr; }
+    .about-section { grid-template-columns: 1fr; }
+    .contact-footer { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Simran Kaur</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- TOP ROW -->
+  <div class="top-row" id="about">
+
+    <div class="card">
+      <div class="card-label">About Me</div>
+      <div class="card-title">My Story</div>
+      <div class="card-desc">I moved from India to Berlin in 2021 to pursue my Master's in Media & Communication Management. I discovered my passion at the crossroads of data and marketing — using analytics to tell the story behind every campaign.</div>
+      <a class="card-link" href="#about-full">Read my full story →</a>
+    </div>
+
+    <div class="card center-card">
+      <div class="avatar">SK</div>
+      <div class="center-name">Simran Kaur</div>
+      <div class="center-role">Junior Performance Marketing &<br>Paid Media Analyst · Berlin, Germany</div>
+      <a class="contact-btn" href="/cdn-cgi/l/email-protection#05766c6877646b6e3c343c3c30456268646c692b666a68">Contact Me</a>
+      <div class="social-row">
+        <a class="social-icon" href="https://www.linkedin.com/in/skaurmediamarketing" target="_blank" title="LinkedIn">in</a>
+        <a class="social-icon" href="https://bit.ly/3NPAZcQ" target="_blank" title="Portfolio">📊</a>
+        <a class="social-icon" href="/cdn-cgi/l/email-protection#3c4f55514e5d5257050d0505097c5b515d5550125f5351" title="Email">✉</a>
+      </div>
+      <div class="avail-badge"><div class="avail-dot"></div> Available immediately</div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Resume</div>
+      <div class="card-title">My CV</div>
+      <div class="card-desc">Performance marketing professional with hands-on analytics experience, GA4 expertise, and current Google certifications (2026).</div>
+      <a class="card-link" href="https://bit.ly/3NPAZcQ" target="_blank">View full portfolio →</a>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM ROW -->
+  <div class="bottom-row">
+
+    <div class="card" id="projects">
+      <div class="card-label">Projects</div>
+      <div class="card-title">Portfolio Work</div>
+      <div style="margin-top: 14px;">
+        <div class="project-item">
+          <div class="project-num">01</div>
+          <div>
+            <div class="project-name">GA4 Funnel & Conversion Analysis</div>
+            <div class="project-sub">E-commerce · Google Merchandise Store</div>
+            <span class="project-tag">GA4 · Funnel Analysis · Segmentation</span>
+          </div>
+        </div>
+        <div class="project-item">
+          <div class="project-num">02</div>
+          <div>
+            <div class="project-name">Google Ads Campaign Analysis</div>
+            <div class="project-sub">JGJ Housings · Hamburg Real Estate</div>
+            <span class="project-tag">Google Ads · Keyword Strategy · Lead Gen</span>
+          </div>
+        </div>
+        <div class="project-item">
+          <div class="project-num">03</div>
+          <div>
+            <div class="project-name">Looker Studio Dashboard</div>
+            <div class="project-sub">Campaign Performance Visualization</div>
+            <span class="project-tag coming-tag">Coming soon</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="skills">
+      <div class="card-label">Core Skills</div>
+      <div class="card-title">What I Work With</div>
+      <div style="margin-top: 12px;">
+        <div class="skill-section-label">Analytics & Marketing</div>
+        <span class="skill-tag">GA4</span>
+        <span class="skill-tag">Funnel Analysis</span>
+        <span class="skill-tag">Conversion Tracking</span>
+        <span class="skill-tag">A/B Testing</span>
+        <span class="skill-tag">Campaign Reporting</span>
+        <span class="skill-tag">Marketing Funnels</span>
+        <div class="skill-section-label">Advertising</div>
+        <span class="skill-tag">Google Ads Search</span>
+        <span class="skill-tag">Keyword Research</span>
+        <span class="skill-tag">Audience Targeting</span>
+        <span class="skill-tag">Paid Search</span>
+        <div class="skill-section-label">Tools & Metrics</div>
+        <span class="skill-tag">Looker Studio</span>
+        <span class="skill-tag">Google Sheets</span>
+        <span class="skill-tag">Excel</span>
+        <span class="skill-tag">ROAS</span>
+        <span class="skill-tag">CTR</span>
+        <span class="skill-tag">CPL</span>
+        <span class="skill-tag">ROI</span>
+      </div>
+    </div>
+
+    <div class="card" id="certifications">
+      <div class="card-label">Certifications</div>
+      <div class="card-title">Credentials</div>
+      <div style="margin-top: 14px;">
+        <div class="cert-item">
+          <div class="cert-dot"></div>
+          <div>
+            <div class="cert-name">Google Analytics GA4</div>
+            <div class="cert-sub">Google Skillshop · 2026</div>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-dot"></div>
+          <div>
+            <div class="cert-name">Google Ads Search</div>
+            <div class="cert-sub">Google Skillshop · 2026</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border);">
+        <div class="card-label">Education</div>
+        <div style="margin-top: 10px;">
+          <div class="edu-item">
+            <div class="edu-degree">MA Media & Communication Management</div>
+            <div class="edu-school">Macromedia University, Berlin · 2021–2023</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-degree">MA Political Science</div>
+            <div class="edu-school">Dibrugarh University, India · 2017–2019</div>
+          </div>
+          <div class="edu-item" style="margin-bottom:0;">
+            <div class="edu-degree">BA Political Science</div>
+            <div class="edu-school">Handique Girls College, India · 2014–2017</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ABOUT FULL -->
+  <div class="about-section" id="about-full">
+    <div class="about-quote">
+      "I came to Berlin in 2021 — alone, with a Master's in Political Science and a vision to build something new. I enrolled in a second Master's in Media & Communication Management, and somewhere between funnel analyses, campaign dashboards, and GA4 deep dives, I found exactly the career I want to build. I believe great marketing, like great writing, is about understanding your audience and telling them the right story."
+    </div>
+    <div class="about-stats">
+      <div class="stat-box">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Master's Degrees</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Google Certifications</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Portfolio Projects</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact-footer" id="contact">
+    <div class="contact-left">
+      <h3>Let's work together</h3>
+      <p>Open to junior performance marketing & analytics roles in Berlin. Available immediately.</p>
+    </div>
+    <div class="contact-right">
+      <a class="contact-chip" href="/cdn-cgi/l/email-protection#2b584246594a4540121a12121e6b4c464a424705484446">✉ <span class="__cf_email__" data-cfemail="deadb7b3acbfb0b5e7efe7e7eb9eb9b3bfb7b2f0bdb1b3">[email&#160;protected]</span></a>
+      <a class="contact-chi
